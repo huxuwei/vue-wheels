@@ -1,0 +1,24 @@
+{
+  "name": "vue-wheels",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.9.3",
+    "vue-loader": "^15.2.4",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  }
+}
