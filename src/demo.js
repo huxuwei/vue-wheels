@@ -17,6 +17,7 @@ new Vue({
 
 import chai from 'chai'
 import spies from 'chai-spies'
+import { connect } from 'net';
 chai.use(spies)
 
 const expect = chai.expect
@@ -28,7 +29,9 @@ const expect = chai.expect
             icon: 'settings'
         }
     }).$mount()
+    
     const useElement = vm.$el.querySelector('use')
+    console.log(useElement.getAttribute('xlink:href'))
     expect(useElement.getAttribute('xlink:href')).to.equal('#i-settings')
 }
 {

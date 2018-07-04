@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import gIcon from './icon'
 export default {
     props:{
         label: {
@@ -27,7 +28,9 @@ export default {
         disabled: Boolean,
         loading: Boolean
     },
-    
+    components:{
+        gIcon
+    }
 }
 </script>
 
