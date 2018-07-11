@@ -48,7 +48,7 @@ export default {
         cursor: pointer;
         border-color: var(--border-active-color)
     }
-    &:active{
+    &:focus{
         background: var(--button-active-bg);
     }
     .icon{
