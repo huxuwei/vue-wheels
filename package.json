@@ -6,7 +6,7 @@
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/* --no-minify --no-cache && karma start --single-run",
-    "dev": "parcel --no-cache"
+    "dev": "parcel index.html --no-cache"
   },
   "keywords": [],
   "author": "",
