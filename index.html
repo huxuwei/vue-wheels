@@ -25,16 +25,25 @@
         body{
             font-size: var(--font-size)
         }
+				.box{
+					margin: 10px;
+				}
     </style>
 </head>
 <body>
-    <div id="app">
-        <g-button></g-button>
-        <g-button label='提交'></g-button>
-        <g-button label='提交' icon='setting'></g-button>
-        <g-button label='提交' icon='setting' icon-position='right'></g-button>
-        <g-button label='提交' @click='change'></g-button>
-    </div>
-    <script src="./src/demo.js"></script>
+	<div id="app">
+		<div class="box">
+			<g-input></g-input>
+			<g-input value='张三'></g-input>
+		</div>
+		<div class="box">
+			<g-button></g-button>
+			<g-button label='提交'></g-button>
+			<g-button label='提交' icon='setting'></g-button>
+			<g-button label='提交' icon='setting' icon-position='right'></g-button>
+			<g-button label='提交' @click='change'></g-button>
+			</div>
+	</div>
+	<script src="./src/demo.js"></script>
 </body>
 </html>
