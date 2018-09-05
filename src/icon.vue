@@ -1,5 +1,5 @@
 <template>
-    <svg class="icon" aria-hidden="true">
+    <svg class="icon" aria-hidden="true" :style="{fill:color}">
       <use :xlink:href='iconS'></use>
     </svg>
 </template>
@@ -8,6 +8,9 @@
 export default {
   props: {
     icon: {
+      type: String
+    },
+    color: {
       type: String
     }
   },
@@ -23,7 +26,8 @@ export default {
 .icon {
   width: 1em;
   height: 1em;
-  /* vertical-align: -0.15em; */
+  /* vertical-align: center; */
+  vertical-align: -0.15em;
   /* fill: currentColor;
        overflow: hidden;
        vertical-align: middle */

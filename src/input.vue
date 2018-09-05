@@ -1,15 +1,34 @@
 <template>
-  <div class="inputWraper">
-    <input type="text" :value="value">
+  <div class="inputWraper" :class="{error}">
+    <input type="text" :value="value" :placeholder="placeholder"
+    :disabled='disabled'>
+    <template v-if="error">
+      <icon icon='setting' color='red'></icon>
+      <span>{{error}}</span>
+    </template>
   </div>
 </template>
 
 <script>
+import icon from './icon'
 export default {
   props:{
     value: {
       type: String
+    },
+    placeholder: {
+      type: String
+    },
+    disabled:{
+      type: Boolean,
+      default: false
+    },
+    error: {
+      type: String
     }
+  },
+  components: {
+    icon
   }
 }
 </script>
@@ -18,14 +37,28 @@ export default {
 $color: #333;
 $border-color: #999;
 $order-color-hover: #666;
+$red:red;
 .inputWraper{
   display: inline-block;
   >input{
-    padding: 0 .5em;
+    padding: .2em .5em;
     &:focus{
-      border:inset 1px $border-color
+      border-color: $border-color
     }
   }
-  
+  >input[disabled]{
+    cursor:not-allowed
+  }
+  &.error{
+    >input{
+      border-color:$red;
+    }
+    >span{
+      color: $red;
+    }
+    >icon{
+      // fill:$red;
+    }
+  }
 }
 </style>
