@@ -1,7 +1,10 @@
 <template>
   <div class="inputWraper" :class="{error}">
     <input type="text" :value="value" :placeholder="placeholder"
-    :disabled='disabled'>
+      :disabled='disabled'
+      @change="$emit('change')" 
+      @blur="$emit('blur')"
+      @focus="$emit('focus')" >
     <template v-if="error">
       <icon icon='setting' color='red'></icon>
       <span>{{error}}</span>
@@ -37,7 +40,7 @@ export default {
 $color: #333;
 $border-color: #999;
 $order-color-hover: #666;
-$red:red;
+$red:#f56c6c;
 .inputWraper{
   display: inline-block;
   >input{
