@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Button from './button'
 import Icon from './icon'
+import Tag from './tag'
 import './assents/js/svg'
 
 Vue.component('g-button',Button)
 Vue.component('g-icon',Icon)
-
+Vue.component('g-tag',Tag)
 
 new Vue({
     el:'#app',
