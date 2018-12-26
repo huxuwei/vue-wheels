@@ -10,6 +10,14 @@ export default {
     span: {
       type: String | Number,
       default: 24
+    },
+    offset: {
+      type: String | Number,
+    }
+  },
+  data () {
+    return {
+      gutter: 0
     }
   }
 }
