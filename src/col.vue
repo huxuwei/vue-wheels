@@ -1,5 +1,5 @@
 <template>
-  <div class="col" :class="span &&`col-${span}`">
+  <div class="col" :class="colClass">
     <slot></slot>
   </div>
 </template>
@@ -19,6 +19,12 @@ export default {
     return {
       gutter: 0
     }
+  },
+  computed: {
+    colClass() {
+      let {span, offset} = this
+      return [span &&`col-${span}`,offset && `col-offset-${offset}`]
+    }
   }
 }
 </script>
@@ -29,9 +35,12 @@ export default {
   // margin: 0 10px;
 }
 @for $i from 1 through 24
-  {
-    .col-#{$i}{
-      width: $i/24 * 100%;
-    }
+{
+  .col-#{$i}{
+    width: $i/24 * 100%;
   }
+  .col-offset-#{$i}{
+    margin-left: $i/24 * 100%
+  }
+}
 </style>
