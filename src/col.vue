@@ -13,7 +13,20 @@ export default {
     },
     offset: {
       type: String | Number,
-    }
+    },
+    justify: {
+      type: String,
+      validate(val) {
+        return ['start', 'end', 'center', 'space-around', 'space-between'].find(item=>item===val)
+      }
+    },
+    align: {
+      type: String,
+      validate(val) {
+        return ['top', 'middle', 'bottom'].find(item=>item===val)
+      }
+    },
+    
   },
   data () {
     return {
