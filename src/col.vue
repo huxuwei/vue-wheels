@@ -14,6 +14,22 @@ export default {
     offset: {
       type: String | Number,
     },
+    xs: {
+      type: String | Number,
+    },
+    sm: {
+      type: String | Number,
+    },
+    md: {
+      type: String | Number,
+    },
+    lg: {
+      type: String | Number,
+      default: 24
+    },
+    xl: {
+      type: String | Number,
+    },
     justify: {
       type: String,
       validate(val) {
@@ -35,8 +51,16 @@ export default {
   },
   computed: {
     colClass() {
-      let {span, offset} = this
-      return [span &&`col-${span}`,offset && `col-offset-${offset}`]
+      let {span, offset, xs, sm, md, lg, xl} = this
+      return [
+        span &&`col-${span}`,
+        offset && `col-offset-${offset}`,
+        xs && `col-xs-${xs}`,
+        sm && `col-sm-${sm}`,
+        md && `col-md-${md}`,
+        lg && `col-lg-${lg}`,
+        xl && `col-xl-${xl}`
+      ]
     }
   }
 }
@@ -47,13 +71,39 @@ export default {
   // width: 50%;
   // margin: 0 10px;
 }
+
 @for $i from 1 through 24
 {
-  .col-#{$i}{
+  .col-#{$i} {
     width: $i/24 * 100%;
   }
-  .col-offset-#{$i}{
+  .col-offset-#{$i} {
     margin-left: $i/24 * 100%
+  }
+  @media (max-width: 768px) {
+    .col-xs-#{$i} {
+      width: $i/24 * 100%
+    }
+  }
+  @media (min-width: 769px) and (max-width: 991px) {
+    .col-sm-#{$i} {
+      width: $i/24 * 100%
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .col-md-#{$i} {
+      width: $i/24 * 100%
+    }
+  }
+  @media (min-width: 1200px) and (max-width: 1919px) {
+    .col-lg-#{$i} {
+      width: $i/24 * 100%;
+    }
+  }
+  @media (min-width: 1920px) {
+    .col-xl-#{$i} {
+      width: $i/24 * 100%;
+    }
   }
 }
 </style>

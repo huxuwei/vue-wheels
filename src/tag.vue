@@ -14,8 +14,9 @@ export default {
       default: false
     },
     type: {
-      type: String,
-      default: ""
+      validator(val) {
+        return ['','success','info','warning'].find(item=>item===val)
+      }
     }
   },
   data() {

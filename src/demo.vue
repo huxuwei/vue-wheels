@@ -2,8 +2,8 @@
   <div>
     <div class="block">
       <g-row gutter="10">
-        <g-col>1</g-col>
-        <g-col>2</g-col>
+        <g-col :span='4' :xs='24' :sm='12' :md='10' :lg='8'>1</g-col>
+        <g-col :span='20' :xs='24' :sm='12' :md='14' :lg='16'>2</g-col>
       </g-row>
       <g-row>
         <g-col span="2">1</g-col>
