@@ -34,16 +34,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
-  $button-height: 32px;
-  $font-size: 14px;
-  $button-bg: white;
-  $button-active-bg: #eee;
-  $border-radius: 4px;
-  $color: #333;
-  $border-color: #999;
-  $border-color-hover: #666;
-  $border-active-color: #666;
+@import './style/index.scss';
+ 
 .g-button {
   height: 32px;
   background: $button-bg;
