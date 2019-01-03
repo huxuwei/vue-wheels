@@ -1,10 +1,8 @@
 <template>
-  <div :class="type" class="wrap" v-if='show'>
-    <span>
+  <span :class="type" class="wrap" v-if='show'>
       <slot></slot>
-    </span>
-    <span @click="del" v-if="closable" class="del">X</span>
-  </div>
+    <i @click="del" v-if="closable" class="del">x</i>
+  </span>
 </template>
 <script>
 export default {
@@ -15,7 +13,7 @@ export default {
     },
     type: {
       validator(val) {
-        return ['','success','info','warning'].find(item=>item===val)
+        return ['','success','info','warning','danger'].find(item=>item===val)
       }
     }
   },
@@ -32,35 +30,40 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang='scss' scoped>
+@import '@/style/style.scss';
+
 .wrap {
   padding: 0 10px;
   display: inline-block;
   background: rgba(64, 158, 255, 0.1);
   border: 1px solid rgba(64, 158, 255, 0.2);
-  color: #409eff;
+  color: $color-primary;
+  margin: 0 10px;
 }
 .success {
   background-color: rgba(103, 194, 58, 0.1);
   border-color: rgba(103, 194, 58, 0.2);
-  color: #67c23a;
+  color: $color-success;
 }
 .info{
   background-color: hsla(220,4%,58%,.1);
   border-color: hsla(220,4%,58%,.2);
-  color: #909399;
+  color: $color-info;
 }
 .warning{
   background-color: rgba(230,162,60,.1);
   border-color: rgba(230,162,60,.2);
-  color: #e6a23c;
+  color: $color-warning;
 }
 .danger {
   background-color: hsla(0, 87%, 69%, 0.1);
   border-color: hsla(0, 87%, 69%, 0.2);
-  color: #f56c6c;
+  color: $color-danger;
 }
 .del {
   cursor: pointer;
+  font-style: normal;
+  padding-left: 10px;
 }
 </style>

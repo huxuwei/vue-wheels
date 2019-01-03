@@ -62,6 +62,9 @@
     <div>
       <g-tag>标签</g-tag>
       <g-tag type="success">标签</g-tag>
+      <g-tag type="info">标签</g-tag>
+      <g-tag type="warning">标签</g-tag>
+      <g-tag type="danger">标签</g-tag>
       <g-tag closable>标签</g-tag>
       <g-tag closable @close="change">标签</g-tag>
     </div>

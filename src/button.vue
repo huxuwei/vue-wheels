@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import './style/index.scss';
+@import '@/style/index.scss';
  
 .g-button {
   height: 32px;
