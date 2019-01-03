@@ -5,10 +5,18 @@
         <g-col :span='4' :xs='24' :sm='12' :md='10' :lg='8'>1</g-col>
         <g-col :span='20' :xs='24' :sm='12' :md='14' :lg='16'>2</g-col>
       </g-row>
-      <g-row>
-        <g-col span="2">1</g-col>
-        <g-col span="6" offset="2">2</g-col>
-        <g-col span="4">3</g-col>
+      <g-row :gutter='40'>
+        <g-col span="2">
+          <div class="bor">1</div>
+        </g-col>
+        <g-col span="6" >
+          <div class="bor">2</div>
+
+        </g-col>
+        <g-col span="4">
+          <div class="bor">3</div>
+
+        </g-col>
       </g-row>
       <g-row>
         <g-col>1</g-col>
@@ -63,7 +71,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 * {
   outline: 0;
   margin: 0;
@@ -88,12 +96,12 @@ body {
 .block {
   margin-bottom: 15px;
 }
-.row {
+.row .bor{
   border: 1px springgreen solid;
 }
 .col {
   background: grey;
-  border: 1px solid #333;
+  // border: 1px solid #333;
   height: 40px;
 }
 </style>

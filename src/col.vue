@@ -1,5 +1,5 @@
 <template>
-  <div class="col" :class="colClass">
+  <div class="col" :class="colClass" :style="styleCol">
     <slot></slot>
   </div>
 </template>
@@ -61,8 +61,13 @@ export default {
         lg && `col-lg-${lg}`,
         xl && `col-xl-${xl}`
       ]
+    },
+    styleCol() {
+      let {gutter} = this
+      return `padding-left:${gutter/ 2}px;padding-right:${gutter/ 2}px`
     }
-  }
+  },
+  
 }
 </script>
 
