@@ -9,7 +9,6 @@ export default {
   props:{
     span: {
       type: String | Number,
-      default: 24
     },
     offset: {
       type: String | Number,

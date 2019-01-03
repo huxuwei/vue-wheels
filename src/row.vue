@@ -14,7 +14,10 @@ export default {
   computed: {
     style() {
       let {gutter} = this
-      return `margin-left: -${gutter/2}px;margin-right:-${gutter/2}px`
+      return {
+        'margin-left': `-${gutter/2}px`,
+        'margin-right': `-${gutter/2}px`
+      }
     }
   },
   mounted() {

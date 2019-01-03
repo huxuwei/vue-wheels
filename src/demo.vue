@@ -1,19 +1,40 @@
 <template>
   <div>
     <div class="block">
+      <g-layout>
+        <g-header></g-header>
+        <g-layout>
+          <g-aside width='200px'></g-aside>
+          <g-main></g-main>
+        </g-layout>
+        <g-footer></g-footer>
+      </g-layout>
+    </div>
+    <g-row :gutter='40'>
+        <g-col span="12">
+          <div class="bor">1</div>
+        </g-col>
+        <g-col span="6" >
+          <div class="bor">2</div>
+        </g-col>
+        <g-col span="6">
+          <div class="bor">3</div>
+
+        </g-col>
+      </g-row>
+    <!-- <div class="block">
       <g-row gutter="10">
         <g-col :span='4' :xs='24' :sm='12' :md='10' :lg='8'>1</g-col>
         <g-col :span='20' :xs='24' :sm='12' :md='14' :lg='16'>2</g-col>
       </g-row>
       <g-row :gutter='40'>
-        <g-col span="2">
+        <g-col span="12">
           <div class="bor">1</div>
         </g-col>
         <g-col span="6" >
           <div class="bor">2</div>
-
         </g-col>
-        <g-col span="4">
+        <g-col span="6">
           <div class="bor">3</div>
 
         </g-col>
@@ -30,7 +51,7 @@
         <g-col>3</g-col>
         <g-col>4</g-col>
       </g-row>
-    </div>
+    </div> -->
     <div class="block">
       <g-button></g-button>
       <g-button label="提交"></g-button>
@@ -55,6 +76,11 @@ import gRow from "./row";
 import gCol from "./col";
 import "./assents/js/svg";
 
+import gMain from './layout/main'
+import gHeader from './layout/header'
+import gFooter from './layout/footer'
+import gAside from './layout/aside'
+import gLayout from './layout/layout'
 export default {
   methods: {
     change() {
@@ -66,7 +92,8 @@ export default {
     gIcon,
     gTag,
     gRow,
-    gCol
+    gCol,
+    gMain, gHeader, gFooter, gAside, gLayout
   }
 };
 </script>
@@ -76,6 +103,10 @@ export default {
   outline: 0;
   margin: 0;
   padding: 0;
+}
+div{
+  box-sizing: border-box;
+  border: 1px solid #333;
 }
 html {
   --button-height: 32px;
@@ -100,8 +131,8 @@ body {
   border: 1px springgreen solid;
 }
 .col {
-  background: grey;
-  // border: 1px solid #333;
+  // background: grey;
+  border: 1px solid #333;
   height: 40px;
 }
 </style>
