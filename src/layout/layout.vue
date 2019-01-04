@@ -1,20 +1,37 @@
 <template>
-  <section class="g-layout">
+  <section class="layout" :class="layoutClass">
     <slot></slot>
   </section>
 </template>
 
 <script>
 export default {
-
+  name: 'layout',
+  data () {
+    return {
+      layoutClass: {
+        'has-Sider-layout': false
+      }
+    }
+  },
+  mounted() {
+    this.$children.forEach(vm=> {
+      if(vm.$options.name === 'g-aside'){
+        this.layoutClass['has-Sider-layout'] = true
+      }
+    })
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.g-layout {
+.layout {
+  flex: 1;
   display: flex;
-  width: 100%;
-  height: 100%;
+  flex-direction: column;
+  &.has-Sider-layout {
+    flex-direction: row;
+  }
 }
 </style>
 

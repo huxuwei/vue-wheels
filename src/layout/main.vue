@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="main">
     <slot></slot>
   </main>
 </template>
@@ -10,6 +10,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.main{
+  flex-grow: 1;
+}
 </style>
