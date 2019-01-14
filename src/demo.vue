@@ -1,6 +1,35 @@
 <template>
   <div>
     <div class="block">
+      <g-card>
+        <div slot="title">
+          title
+        </div>
+      </g-card>
+      <g-card body-style='padding:100px'>
+        <ul>
+          <li>1</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </g-card>
+      <g-card>
+        <div slot="title">
+          title
+        </div>
+        <div slot="extra">
+          <g-button>按钮</g-button>
+        </div>
+        <ul>
+          <li>1</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </g-card>
+    </div>
+    <div class="block">
       <g-layout>
         <g-header>header</g-header>
         <!-- <g-main>main</g-main> -->
@@ -85,6 +114,7 @@ import gHeader from './layout/header'
 import gFooter from './layout/footer'
 import gAside from './layout/aside'
 import gLayout from './layout/layout'
+import gCard from './card'
 export default {
   methods: {
     change() {
@@ -97,7 +127,8 @@ export default {
     gTag,
     gRow,
     gCol,
-    gMain, gHeader, gFooter, gAside, gLayout
+    gMain, gHeader, gFooter, gAside, gLayout,
+    gCard
   }
 };
 </script>
@@ -108,10 +139,10 @@ export default {
   margin: 0;
   padding: 0;
 }
-div{
-  border: 1xp #333 solid;
-  height: 200px;
-}
+// div{
+//   border: 1xp #333 solid;
+//   height: 200px;
+// }
 html {
   --button-height: 32px;
   --font-size: 14px;
