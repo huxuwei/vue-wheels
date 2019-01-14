@@ -43,8 +43,10 @@ export default {
 <style lang="scss" scoped>
 $card-border: 1px solid #e3e8ee;
 $card-padding: 24px;
+$card-border-radius: 2px;
 .g-card-wrap{
-  // height: 100%;
+  border-radius: $card-border-radius;
+  background: #ffffff;
 }
 .g-card-wrap-border{
   border: $card-border;
