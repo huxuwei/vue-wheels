@@ -2,7 +2,7 @@
   <button class="g-button" :class="{[iconPosition]:true}" @click="$emit('click')">
     <g-icon class="icon" :icon="icon" v-if="icon"></g-icon>
     <g-icon class="icon" icon="loading" v-if="loading"></g-icon>
-    <span>{{label}}</span>
+    <slot>按钮</slot>
   </button>
 </template>
 
@@ -10,10 +10,6 @@
 import gIcon from "./icon";
 export default {
   props: {
-    label: {
-      type: String,
-      default: "按钮"
-    },
     icon: {
       type: String
     },
