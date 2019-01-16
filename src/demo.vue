@@ -1,5 +1,7 @@
 <template>
   <div>
+    <button @click="showToast">显示toast</button>
+    <g-toast></g-toast>
     <div class="block">
       <g-card>
         <div slot="title">
@@ -19,7 +21,7 @@
           title
         </div>
         <div slot="extra">
-          <g-button>按钮</g-button>
+          <g-button></g-button>
         </div>
         <ul>
           <li>1</li>
@@ -115,10 +117,14 @@ import gFooter from './layout/footer'
 import gAside from './layout/aside'
 import gLayout from './layout/layout'
 import gCard from './card'
+import gToast from './toast'
 export default {
   methods: {
     change() {
       console.log(1);
+    },
+    showToast() {
+
     }
   },
   components: {
@@ -128,7 +134,8 @@ export default {
     gRow,
     gCol,
     gMain, gHeader, gFooter, gAside, gLayout,
-    gCard
+    gCard,
+    gToast
   }
 };
 </script>
