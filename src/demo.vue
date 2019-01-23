@@ -1,7 +1,6 @@
 <template>
   <div>
     <button @click="showToast">显示toast</button>
-    <g-toast></g-toast>
     <div class="block">
       <g-card>
         <div slot="title">
@@ -118,13 +117,16 @@ import gAside from './layout/aside'
 import gLayout from './layout/layout'
 import gCard from './card'
 import gToast from './toast'
+
+
+
 export default {
   methods: {
     change() {
       console.log(1);
     },
     showToast() {
-
+      this.$toast('34343434')
     }
   },
   components: {
