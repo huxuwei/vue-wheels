@@ -126,7 +126,12 @@ export default {
       console.log(1);
     },
     showToast() {
-      this.$toast('34343434')
+      this.$toast('34343434',{
+        text: '知道了!',
+        callBack: (val)=>{
+          console.log(11,val)
+        }
+      })
     }
   },
   components: {

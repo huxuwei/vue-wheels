@@ -2,11 +2,13 @@ import Toast from './toast'
 
 export default {
   install(Vue, Options) {
-    // console.log(Vue)
-    Vue.prototype.$toast =  (message)=>{
+    Vue.prototype.$toast =  (message, toastOptions)=>{
       let a = Vue.extend(Toast)
-      let b = new a()
-      console.log(b)
+      let b = new a({
+        propsData: {
+          closeButton: toastOptions
+        }
+      })
       b.$slots.default = [message]
       b.$mount()
       document.body.appendChild(b.$el)
