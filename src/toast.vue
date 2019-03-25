@@ -9,9 +9,6 @@
 
 <script>
 export default {
-<<<<<<< HEAD
-  
-=======
   props: {
     autoClose: {
       type: Boolean,
@@ -50,35 +47,10 @@ export default {
       }
     }
   }
->>>>>>> b9f6f740e8d4e48f1edfd8434223fdab7597a30a
 }
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-@import '@/style/style.scss';
-.toast{
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.success {
-  background-color: $background-color-success;
-  color: $color-success;
-}
-.info{
-  background-color: $background-color-info;
-  color: $color-info;
-}
-.warning{
-  background-color: $background-color-warning;
-  color: $color-warning;
-}
-.danger {
-  background-color: $background-color-danger;
-  color: $color-danger;
-=======
 $toast-background-color: grey;
 $toast-color: #ccc;
 .toast{
@@ -97,7 +69,6 @@ $toast-color: #ccc;
 .close{ 
   cursor: pointer;
   margin-left: 16px;
->>>>>>> b9f6f740e8d4e48f1edfd8434223fdab7597a30a
 }
 </style>
 

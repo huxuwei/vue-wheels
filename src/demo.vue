@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="block">
+      <g-tabs v-model="tabVal"  >
+        <g-tab-pane label='第一个标题' :name="1">第一个内容</g-tab-pane>
+        <g-tab-pane label='第2个标题' :name="2">第2个内容</g-tab-pane>
+        <g-tab-pane label='第3个标题' :name="3">第3个内容</g-tab-pane>
+      </g-tabs>
+    </div>
+
     <button @click="showToast">显示toast</button>
     <div class="block">
       <g-card>
@@ -118,9 +126,16 @@ import gLayout from './layout/layout'
 import gCard from './card'
 import gToast from './toast'
 
+import gTabs from "./tabs/tabs.vue";
+import gTabPane from "./tabs/tab-pane.vue";
 
 
 export default {
+  data () {
+    return {
+      tabVal: 2
+    }
+  },
   methods: {
     change() {
       console.log(1);
@@ -142,7 +157,9 @@ export default {
     gCol,
     gMain, gHeader, gFooter, gAside, gLayout,
     gCard,
-    gToast
+    gToast,
+    gTabs,
+    gTabPane
   }
 };
 </script>

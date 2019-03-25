@@ -4,6 +4,9 @@ import Icon from "./icon";
 import Tag from "./tag";
 import Row from "./row";
 import Col from "./col";
+import Tabs from "./tabs/tabs.vue";
+import TabPane from "./tabs/tab-pane.vue";
+
 import "./assents/js/svg";
 
 Vue.component("g-button", Button);
@@ -11,6 +14,8 @@ Vue.component("g-icon", Icon);
 Vue.component("g-tag", Tag);
 Vue.component("g-row", Row);
 Vue.component("g-col", Col);
+Vue.component("g-tabs", Tabs);
+Vue.component("g-tab-pane", TabPane);
 
 new Vue({
   el: "#app",
