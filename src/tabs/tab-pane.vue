@@ -19,6 +19,11 @@ export default {
     return  {
       show: false
     }
+  },
+  computed: {
+    vmName() {
+      return 'g-tab-pane'
+    }
   }
 }
 </script>

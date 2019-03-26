@@ -1,11 +1,18 @@
 <template>
   <div>
     <div class="block">
-      <g-tabs v-model="tabVal"  >
+      
+      <g-tabs v-model="tabVal"  @tab-click='tabClick'>
         <g-tab-pane label='第一个标题' :name="1">第一个内容</g-tab-pane>
         <g-tab-pane label='第2个标题' :name="2">第2个内容</g-tab-pane>
         <g-tab-pane label='第3个标题' :name="3">第3个内容</g-tab-pane>
+        <g-tab-pane label='第4个标题' :name="4">第3个内容</g-tab-pane>
+        <div slot="head-right" >
+          <g-button>按钮11</g-button>
+          <g-button>按钮11</g-button>
+        </div>
       </g-tabs>
+      
     </div>
 
     <button @click="showToast">显示toast</button>
@@ -133,7 +140,7 @@ import gTabPane from "./tabs/tab-pane.vue";
 export default {
   data () {
     return {
-      tabVal: 2
+      tabVal: 4
     }
   },
   methods: {
@@ -147,6 +154,9 @@ export default {
           console.log(11,val)
         }
       })
+    },
+    tabClick(){
+      console.log('tabclick',arguments)
     }
   },
   components: {
