@@ -1,5 +1,5 @@
 <template>
-  <div class="g-tabs-wrap">
+  <div class="g-tabs-wrap" ref="wrap">
     <div class="g-tabs-header">
       <div>
         <div
@@ -53,7 +53,6 @@ export default {
     this.tabPaneVm.forEach((item, i) => {
         let { label, name } = item.$props;
         name = name ? name : i
-        // console.log(name, this.value)
         this.children.push({ label, name });
 
         if (this.value === name) {
@@ -73,10 +72,11 @@ export default {
   methods: {
     calculate(i) {
       // 计算bar的宽度与位置
-      // bar的width是当前title的width，left为当前title的left
+      // bar的width是当前title的width，left为当前title的left - 外框的left
+      let wrapLeft = this.$refs.wrap.getBoundingClientRect().left
       let { left, width } = this.$refs.title[i].childNodes[0].getBoundingClientRect();
       this.width = width + "px";
-      this.translateX = left + "px";
+      this.translateX = left - wrapLeft + "px";
     },
     change(name) {
       // 隐藏上一个，显示当前选项卡
