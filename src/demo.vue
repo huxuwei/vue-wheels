@@ -1,19 +1,12 @@
 <template>
-  <div>
+  <div style="margin:20px">
     <div class="block">
-      
+      <g-popover>
+        <g-button>显示popover</g-button>
+      </g-popover>
+    </div>
+    <div class="block">
       <g-tabs v-model="tabVal"  @tab-click='tabClick'>
-        <div slot="tabBarExtraContent" >
-          <g-button>按钮11</g-button>
-          <g-button>按钮11</g-button>
-        </div>
-        <g-tab-pane label='第一个标题' >第1个内容</g-tab-pane>
-        <g-tab-pane label='第2个标题' >第2个内容</g-tab-pane>
-        <g-tab-pane label='第3个标题' >第3个内容</g-tab-pane>
-        <g-tab-pane label='第4个标题' >第4个内容</g-tab-pane>
-        
-      </g-tabs>
-      <!-- <g-tabs v-model="tabVal"  @tab-click='tabClick'>
         <div slot="tabBarExtraContent" >
           <g-button>按钮11</g-button>
           <g-button>按钮11</g-button>
@@ -23,7 +16,7 @@
         <g-tab-pane label='第3个标题' :name="3">第3个内容</g-tab-pane>
         <g-tab-pane label='第4个标题' :name="4">第3个内容</g-tab-pane>
         
-      </g-tabs> -->
+      </g-tabs>
       
     </div>
 
@@ -148,11 +141,11 @@ import gToast from './toast'
 import gTabs from "./tabs/tabs.vue";
 import gTabPane from "./tabs/tab-pane.vue";
 
-
+import gPopover from "./popover";
 export default {
   data () {
     return {
-      tabVal: 2
+      tabVal: 3
     }
   },
   methods: {
@@ -181,7 +174,8 @@ export default {
     gCard,
     gToast,
     gTabs,
-    gTabPane
+    gTabPane,
+    gPopover
   }
 };
 </script>
