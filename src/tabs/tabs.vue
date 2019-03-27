@@ -2,15 +2,18 @@
   <div class="g-tabs-wrap">
     <div class="g-tabs-header">
       <div>
-        <div ref="title" class="g-tabs-item" v-for="(item) in children" :key="item.name">
-          <span
-            @click="change(item.name)"
-            :class="{'g-tabs-active': item.name===value}"
-          >{{item.label}}</span>
+        <div
+          ref="title"
+          class="g-tabs-item"
+          v-for="(item) in children"
+          :key="item.name"
+          @click="change(item.name)"
+        >
+          <span :class="{'g-tabs-active': item.name===value}">{{item.label}}</span>
         </div>
       </div>
       <div :style="{width,transform:`translateX(${translateX})`}" class="g-tabs-active-bar"></div>
-      <slot name="head-right"></slot>
+      <slot name="tabBarExtraContent"></slot>
     </div>
     <slot></slot>
   </div>
@@ -36,6 +39,7 @@ export default {
   data() {
     return {
       children: [],
+      tabPaneVm:[],
       oldSelected: 1,
       width: 0,
       translateX: 0
@@ -43,36 +47,60 @@ export default {
   },
   mounted() {
     this.oldSelected = this.value;
-    this.$children.filter(item => item.vmName === "g-tab-pane")
-      .forEach((item, i) => {
+    // 过滤得到选项卡，添加title组，并显示对应的选项卡
+    // name 默认为0开始的数组索引
+    this.tabPaneVm =  this.$children.filter(item => item.vmName === "g-tab-pane")
+    this.tabPaneVm.forEach((item, i) => {
         let { label, name } = item.$props;
+        name = name ? name : i
+        // console.log(name, this.value)
         this.children.push({ label, name });
+
         if (this.value === name) {
           item.show = true;
 
           this.$nextTick(() => {
-            let { left, width } = this.$refs.title[i].childNodes[0].getBoundingClientRect();
-            this.width = width + "px";
-            this.translateX = left + "px";
+            this.calculate(i);
           });
         }
       });
   },
+  watch: {
+    value(val) {
+      this.change(val)
+    }
+  },
   methods: {
-    change(i) {
-      let oldEle = this.$children.find(
+    calculate(i) {
+      // 计算bar的宽度与位置
+      // bar的width是当前title的width，left为当前title的left
+      let { left, width } = this.$refs.title[i].childNodes[0].getBoundingClientRect();
+      this.width = width + "px";
+      this.translateX = left + "px";
+    },
+    change(name) {
+      // 隐藏上一个，显示当前选项卡
+      let oldEle = this.tabPaneVm.find(
         item => item.$props.name === this.oldSelected
       );
       if (oldEle) {
         oldEle.show = false;
+      }else{
+        this.tabPaneVm[this.oldSelected].show= false
       }
-      let nowEle = this.$children.find(item => item.$props.name === i);
+      let nowEle = this.tabPaneVm.find(item => item.$props.name === name);
       if (nowEle) {
         nowEle.show = true;
+      }else{
+        this.tabPaneVm[name].show= true
       }
 
-      this.oldSelected = i;
-      this.$emit("change", i);
+      // 找到当前选项卡的title的位置
+      let index = this.children.findIndex(item => item.name === name);
+      this.calculate(index);
+
+      this.oldSelected = name;
+      this.$emit("change", name);
       this.$emit("tab-click", nowEle);
     }
   }
@@ -95,6 +123,7 @@ $border-bottom: 1px solid $color;
     position: absolute;
     left: 0;
     bottom: 0;
+    transition: 0.4s;
     background-color: $g-tabs-acitve-color;
     z-index: 1;
   }
