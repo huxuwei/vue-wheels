@@ -22,5 +22,14 @@
 | label | 选项卡标题 | string | --- |
 | name | 与选项卡 activeName 对应的标识符，表示选项卡别名 | string | name 默认为0开始 |
 
-#####
+##### 思路
+1、显示隐藏
+
+ 隐藏之前的选项卡，显示当前的
+
+2、bar的宽度及位置
+
+  width = 当前选中选项卡的title的宽度
+
+  left = 当前选项卡的距离可视区的left - tabs外层元素的left
   
