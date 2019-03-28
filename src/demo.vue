@@ -1,8 +1,21 @@
 <template>
-  <div style="margin:20px">
+  <div style="margin:100px">
     <div class="block">
-      <g-popover>
-        <g-button>显示popover</g-button>
+      <g-popover >
+        <div style='height:100px; width:300px'>
+          1111
+        </div>
+        <g-button slot="reference">显示popover</g-button>
+      </g-popover>
+      <g-popover placement='top'>
+        <div style='height:100px'>1111
+        </div>
+        <g-button slot="reference">top显示popover</g-button>
+      </g-popover>
+      <g-popover placement='bottom'>
+        <div style='height:100px'>1111
+        </div>
+        <g-button slot="reference">bottom显示popover</g-button>
       </g-popover>
     </div>
     <div class="block">
