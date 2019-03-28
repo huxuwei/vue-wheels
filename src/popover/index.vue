@@ -2,14 +2,17 @@
   <span>
     <div
     ref="popoverWrap"
+    
     class="g-popover-wrap"
     @click.stop="triggerEvent('click')"
-    @mouseenter="triggerEvent('mouseenter')"
-    @mouseleave="triggerEvent('mouseleave')"
+    @mouseenter="triggerEvent('')"
+    @mouseleave="triggerEvent('')"
     @hover="triggerEvent('hover')"
     @focus="triggerEvent('focus')"
   >
-    <div v-show="visible" class="g-popover" :class="popperClass" ref="popover">
+    <div v-show="visible"
+      :data-show='visible'
+      class="g-popover" :class="popperClass" ref="popover">
       <slot></slot>
       <div class="g-popover-arrow" :x-placement="placement"></div>
     </div>
@@ -19,6 +22,7 @@
 </template>
 
 <script>
+import {randomNum} from '../utils'
 export default {
   name: "GPopover",
   props: {
@@ -46,17 +50,29 @@ export default {
       once: true
     };
   },
-  watch: {
-    visible(val) {
-      if (!val) true;
-      this.$nextTick(() => {
-        this.calculate();
-        let list = document.querySelectorAll('.g-popover')
-        console.log(list)
-      });
+  computed: {
+    setID() {
+      return `g-popover-${randomNum()}`
+    },
+    dataShow(val) {
+      return this.$refs || this.$refs.popover.dataset.show
+      
     }
   },
+  watch: {
+    dataShow(val) {
+     this.visible = !!val
+    }
+    // visible(val) {
+    //   if (!val) true;
+    //   this.$nextTick(() => {
+        
+
+    //   });
+    // }
+  },
   mounted() {
+    // this.$refs.popover
     document.body.addEventListener('click',(e)=>{
       this.visible = false
       e.stopPropagation()
@@ -105,9 +121,25 @@ export default {
       popover.style.top = styleTop +space+ "px";
       // console.log(placement,styleLeft,styleTop);
     },
+    otherClose() {
+      // if(this.visible){
+       
+        let list = document.querySelectorAll('.g-popover')
+        list.forEach(element => {
+          console.log(element,element.dataset)
+          element.style.display  = 'none'
+          element.dataset.show = 'false'
+        });
+      // }
+    },
     triggerEvent(event) {
+     
       if (this.trigger === event) {
+         this.otherClose()
         this.visible = !this.visible;
+        console.log(this.visible)
+        this.visible &&  this.calculate();
+        
       } else if (this.trigger === "hover") {
         if (event === "mouseenter") {
           this.visible = true;
@@ -115,6 +147,7 @@ export default {
           this.visible = false;
         }
       }
+      
       if (this.visible && this.once) {
         this.show();
         this.once = false;
