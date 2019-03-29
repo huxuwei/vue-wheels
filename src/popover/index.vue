@@ -2,9 +2,8 @@
   <span>
     <div
     ref="popoverWrap"
-    
     class="g-popover-wrap"
-    @click.stop="triggerEvent('click')"
+    @click="triggerEvent('click')"
     @mouseenter="triggerEvent('')"
     @mouseleave="triggerEvent('')"
     @hover="triggerEvent('hover')"
@@ -22,7 +21,6 @@
 </template>
 
 <script>
-import {randomNum} from '../utils'
 export default {
   name: "GPopover",
   props: {
@@ -51,39 +49,25 @@ export default {
     };
   },
   computed: {
-    setID() {
-      return `g-popover-${randomNum()}`
-    },
     dataShow(val) {
       return this.$refs || this.$refs.popover.dataset.show
-      
     }
   },
   watch: {
     dataShow(val) {
      this.visible = !!val
     }
-    // visible(val) {
-    //   if (!val) true;
-    //   this.$nextTick(() => {
-        
-
-    //   });
-    // }
   },
   mounted() {
     // this.$refs.popover
-    document.body.addEventListener('click',(e)=>{
-      this.visible = false
-      e.stopPropagation()
-    })
+    
   },
   methods: {
     show() {
       let { popover } = this.$refs;
       document.body.appendChild(popover);
     },
-    calculate() {
+    calculate( placement=this.placement ) {
       const { popoverWrap, popover } = this.$refs;
       const {
         left: wrapLeft,
@@ -98,7 +82,7 @@ export default {
       let styleLeft = 0;
       let styleTop = 0;
       const space = 10;
-      let { placement } = this;
+      // let { placement } = this;
 
       if (placement === "right") {
         styleLeft = wrapRight;
@@ -117,28 +101,27 @@ export default {
       //   case 'top': break;
       //   case 'bottom':break
       // }
-      popover.style.left = styleLeft +space+ "px";
-      popover.style.top = styleTop +space+ "px";
+     
+      console.log(placement,styleLeft,styleTop)
+      if(styleTop < 0) {
+        this.calculate('bottom')
+        return
+      }
+      if(styleLeft <0){
+        this.calculate('right')
+        return
+      }
+      styleLeft += space
+      styleTop += space
+      popover.style.left = styleLeft + "px";
+      popover.style.top = styleTop + "px";
       // console.log(placement,styleLeft,styleTop);
     },
-    otherClose() {
-      // if(this.visible){
-       
-        let list = document.querySelectorAll('.g-popover')
-        list.forEach(element => {
-          console.log(element,element.dataset)
-          element.style.display  = 'none'
-          element.dataset.show = 'false'
-        });
-      // }
-    },
     triggerEvent(event) {
-     
+      
       if (this.trigger === event) {
-         this.otherClose()
         this.visible = !this.visible;
-        console.log(this.visible)
-        this.visible &&  this.calculate();
+        
         
       } else if (this.trigger === "hover") {
         if (event === "mouseenter") {
@@ -147,11 +130,26 @@ export default {
           this.visible = false;
         }
       }
-      
-      if (this.visible && this.once) {
-        this.show();
-        this.once = false;
+
+
+      // 添加document绑定事件  
+      if(this.visible){
+        let toggleEvnetFn = function () {
+          this.visible = false
+          document.removeEventListener('click', toggleEvnetFn)
+        }.bind(this)
+        this.$nextTick(()=>{
+          this.calculate();
+          document.addEventListener('click',toggleEvnetFn)
+        })
+
+        if (this.visible && this.once) {
+          this.show();
+          this.once = false;
+        }
       }
+        
+      
     }
   }
 };
@@ -183,7 +181,7 @@ $g-popover-arrow-color:  #333;
     &[x-placement="bottom"] {
       top: -2 * $width;
       left: 50%;
-       transform: translateX(-100%);
+      transform: translateX(-100%);
       border-bottom-color: $g-popover-arrow-color;
     }
     &[x-placement="right"] {
