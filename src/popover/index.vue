@@ -11,6 +11,7 @@
   >
     <div v-show="visible"
       :data-show='visible'
+      @click.stop
       class="g-popover" :class="popperClass" ref="popover">
       <slot></slot>
       <div class="g-popover-arrow" :x-placement="placement"></div>
@@ -81,8 +82,7 @@ export default {
 
       let styleLeft = 0;
       let styleTop = 0;
-      const space = 10;
-      // let { placement } = this;
+      
 
       if (placement === "right") {
         styleLeft = wrapRight;
@@ -104,15 +104,24 @@ export default {
      
       console.log(placement,styleLeft,styleTop)
       if(styleTop < 0) {
+        // this.placement = 'bottom'
         this.calculate('bottom')
         return
       }
-      if(styleLeft <0){
+      if(styleLeft < 0){
         this.calculate('right')
         return
       }
-      styleLeft += space
-      styleTop += space
+      
+      const space = 10;
+      // if(placement === 'top'){
+      //   styleLeft += space
+      //   styleTop -= space
+      // }else{
+        styleLeft += space
+        styleTop += space
+      // }
+
       popover.style.left = styleLeft + "px";
       popover.style.top = styleTop + "px";
       // console.log(placement,styleLeft,styleTop);
@@ -178,6 +187,13 @@ $g-popover-arrow-color:  #333;
     border-width: $width;
     border-color: transparent;
     border-style: solid;
+    border-radius: 4px;
+    &[x-placement="top"] {
+      left: 50%;
+      bottom: -2 * $width;
+      transform: translateX(-100%);
+      border-top-color: $g-popover-arrow-color;
+    }
     &[x-placement="bottom"] {
       top: -2 * $width;
       left: 50%;
