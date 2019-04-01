@@ -1,16 +1,17 @@
 <template>
-    <svg class="icon" aria-hidden="true" :style="{fill:color}">
-      <use :xlink:href='iconS'></use>
-    </svg>
+  <svg class="icon" aria-hidden="true" :style="{fill:color}">
+    <use :xlink:href="iconS"></use>
+  </svg>
 </template>
 
 <script>
+import "./assents/js/svg";
 export default {
-    name:'GIcon',
-    props:{
-        icon: {
-            type: String,
-        },
+  name: "GIcon",
+  props: {
+    icon: {
+      type: String
+    },
     color: {
       type: String
     }
@@ -23,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style  lang='scss'>
 .icon {
   width: 1em;
   height: 1em;

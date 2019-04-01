@@ -116,7 +116,7 @@
         <g-col>4</g-col>
       </g-row>
     </div> -->
-    <!-- <div class="block">
+    <div class="block">
       <g-button></g-button>
       <g-button label="提交"></g-button>
       <g-button label="提交" icon="setting"></g-button>
@@ -131,7 +131,7 @@
       <g-tag type="danger">标签</g-tag>
       <g-tag closable>标签</g-tag>
       <g-tag closable @close="change">标签</g-tag>
-    </div> -->
+    </div>
   </div>
 </template>
 

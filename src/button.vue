@@ -1,8 +1,8 @@
 <template>
   <button class="g-button" :class="{[iconPosition]:true}" @click="$emit('click')">
     <g-icon class="icon" :icon="icon" v-if="icon"></g-icon>
-    <g-icon class="icon" icon="loading" v-if="loading"></g-icon>
-    <slot>按钮</slot>
+    <g-icon class="icon loading" icon="loading" v-if="loading"></g-icon>
+    <slot>按钮{{icon}}</slot>
   </button>
 </template>
 
@@ -30,8 +30,25 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import '@/style/index.scss';
- 
+// @import '@/style/index.scss';
+$font-size: 14px;
+$color: #333;
+
+$button-height: 32px;
+$button-bg: white;
+$button-active-bg: #eee;
+
+$border-radius: 4px;
+$border-color: #999;
+$border-color-hover: #666;
+$border-active-color: #666;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+ @mixin spin {
+  animation: spin 2s infinite linear;
+}
 .g-button {
   height: 32px;
   background: $button-bg;
@@ -57,6 +74,9 @@ export default {
       margin-left: 0.2em;
       margin-right: 0;
     }
+  }
+  .loading {
+    @include spin;
   }
 }
 </style>
