@@ -5,5 +5,4 @@ title: Button
 
 <ClientOnly>
   <button-demo></button-demo>
-  <icon-demo></icon-demo>
 </ClientOnly>

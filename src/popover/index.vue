@@ -103,15 +103,15 @@ export default {
       // }
      
       console.log(placement,styleLeft,styleTop)
-      if(styleTop < 0) {
-        // this.placement = 'bottom'
-        this.calculate('bottom')
-        return
-      }
-      if(styleLeft < 0){
-        this.calculate('right')
-        return
-      }
+      // if(styleTop < 0) {
+      //   // this.placement = 'bottom'
+      //   this.calculate('bottom')
+      //   return
+      // }
+      // if(styleLeft < 0){
+      //   this.calculate('right')
+      //   return
+      // }
       
       const space = 10;
       // if(placement === 'top'){
@@ -130,8 +130,6 @@ export default {
       
       if (this.trigger === event) {
         this.visible = !this.visible;
-        
-        
       } else if (this.trigger === "hover") {
         if (event === "mouseenter") {
           this.visible = true;
@@ -140,10 +138,10 @@ export default {
         }
       }
 
-
       // 添加document绑定事件  
       if(this.visible){
         let toggleEvnetFn = function () {
+          console.log(1)
           this.visible = false
           document.removeEventListener('click', toggleEvnetFn)
         }.bind(this)

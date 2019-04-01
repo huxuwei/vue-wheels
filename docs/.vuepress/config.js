@@ -18,12 +18,13 @@ module.exports = {
         title: "组件",
         collapsable: false,
         children: [
+          ["/components/tag",'tag'],
           ["/components/button",'button'],
           ["/components/input",'input'],
           ["/components/card",'card'],
           ["/components/tabs",'tabs'],
           ["/components/toast",'toast'],
-          ["/components/popover",'popover'],
+          ["/components/popover",'popover']
         ]
       },
     ]

@@ -31,7 +31,17 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-@import '@/style/style.scss';
+$color-primary: #409eff;
+$color-success: #67c23a;
+$color-info: #909399;
+$color-warning:  #e6a23c;
+$color-danger: #f56c6c;
+
+$background-color-primary: rgba(64, 158, 255, 0.1);
+$background-color-success: rgba(103, 194, 58, 0.1);;
+$background-color-info: hsla(220,4%,58%,.1);
+$background-color-warning:  rgba(230,162,60,.1);
+$background-color-danger: hsla(0, 87%, 69%, 0.1);
 
 .wrap {
   padding: 0 10px;
