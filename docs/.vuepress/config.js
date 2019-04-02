@@ -1,5 +1,6 @@
 const path = require('path')
 module.exports = {
+  base:'/vue-wheels/',
   title: 'Hello VuePress1',
   description: 'Just playing around',
   themeConfig: {
