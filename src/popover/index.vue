@@ -1,9 +1,9 @@
 <template>
-  <span>
+  
     <div
     ref="popoverWrap"
     class="g-popover-wrap"
-    @click="triggerEvent('click')"
+    @click="triggerEvent($event,'click')"
     @mouseenter="triggerEvent('')"
     @mouseleave="triggerEvent('')"
     @hover="triggerEvent('hover')"
@@ -13,12 +13,14 @@
       :data-show='visible'
       @click.stop
       class="g-popover" :class="popperClass" ref="popover">
-      <slot></slot>
-      <div class="g-popover-arrow" :x-placement="placement"></div>
+        <slot></slot>
+      <!-- <div class="g-popover-arrow" :x-placement="placement"></div> -->
     </div>
-    <slot name="reference"></slot>
+    <span ref="popoverTitle">
+      <slot name="reference"></slot>
+    </span>
   </div>
-  </span>
+  
 </template>
 
 <script>
@@ -94,15 +96,8 @@ export default {
         styleLeft = wrapLeft - (width - wrapWidth) / 2
         styleTop = wrapBottom
       }
-      // switch(this.placement){
-      //   case 'right': styleLeft = wrapRight
-      //     styleRight = wrapTop - (height- wrapHeight) / 2
-      //     break;
-      //   case 'top': break;
-      //   case 'bottom':break
-      // }
      
-      console.log(placement,styleLeft,styleTop)
+      // console.log(placement,styleLeft,styleTop)
       // if(styleTop < 0) {
       //   // this.placement = 'bottom'
       //   this.calculate('bottom')
@@ -114,20 +109,22 @@ export default {
       // }
       
       const space = 10;
-      // if(placement === 'top'){
-      //   styleLeft += space
-      //   styleTop -= space
-      // }else{
+      if(placement === 'top'){
+        styleLeft += space
+        styleTop -= space
+      }else{
         styleLeft += space
         styleTop += space
-      // }
+      }
 
       popover.style.left = styleLeft + "px";
       popover.style.top = styleTop + "px";
       // console.log(placement,styleLeft,styleTop);
     },
-    triggerEvent(event) {
-      
+    triggerEvent(e,event) {
+      if(!this.$refs.popoverTitle.contains(e.target)){
+        return
+      }
       if (this.trigger === event) {
         this.visible = !this.visible;
       } else if (this.trigger === "hover") {
@@ -137,16 +134,18 @@ export default {
           this.visible = false;
         }
       }
-
       // 添加document绑定事件  
       if(this.visible){
-        let toggleEvnetFn = function () {
-          console.log(1)
+        let toggleEvnetFn = function (e) {
+          if(this.$refs.popoverTitle.contains(e.target)){
+            return
+          }
           this.visible = false
           document.removeEventListener('click', toggleEvnetFn)
         }.bind(this)
         this.$nextTick(()=>{
           this.calculate();
+        
           document.addEventListener('click',toggleEvnetFn)
         })
 
@@ -167,7 +166,7 @@ $g-popover-background-color: #fff;
 $g-popover-border: 1px solid #ebeef5;
 $g-popover-min-width: 150px;
 $width: 8px;
-$g-popover-arrow-color:  #333;
+$g-popover-arrow-color:  #fff;
 .g-popover-wrap {
   display: inline-block;
 }
@@ -178,6 +177,7 @@ $g-popover-arrow-color:  #333;
   border-radius: 4px;
   min-width: $g-popover-min-width;
   top: 0;
+  z-index: 999;
   .g-popover-arrow {
     position: absolute;
     height: 0;
