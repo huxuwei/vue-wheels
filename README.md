@@ -5,4 +5,4 @@
 - 注意：本 UI 框架的代码尚未完全完工,请不要在生产环境中使用本 UI 框架,欢迎讨论交流
 
 
-[docs]: http://localhost:8080/vue-wheels/install/
+[docs]: https://huxuwei.github.io/vue-wheels/
