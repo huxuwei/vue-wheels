@@ -2,7 +2,9 @@
   "name": "vue-own-wheels",
   "version": "0.1.0",
   "private": true,
-  "keywords": ["vue"],
+  "keywords": [
+    "vue"
+  ],
   "author": "huxuwei",
   "license": "ISC",
   "scripts": {
